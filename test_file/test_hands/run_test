@@ -1,0 +1,11 @@
+#!/bin/bash
+
+x=0;
+
+while [ $x -lt 5 ] ; 
+do 
+    ./poker > test_results/test_$x;
+    echo "Test $x done";
+    x=$(( $x + 1 ));
+done
+
