@@ -1,0 +1,5 @@
+# Lessons
+
+## This is just a log of the interesting lessons learnt along the way
+
+24/05/20 - std::sort requires **[strict weak ordering](https://stackoverflow.com/questions/979759/operator-and-strict-weak-ordering/981299#981299)** or else there may be an infinite loop error encountered.

@@ -1,0 +1,6 @@
+## Here are the key changes made to the code when gathering hand data ##
+
+1 ** ring.h    line 38      => big_blind size changed from 10 ~~> 0
+2 ** cards.cpp line 118     => removed the prinining of community cards for winner
+3 ** main.cpp  line 15      => added more players to the table
+4 ** cards.cpp line 59      => set new seed for random number generator to update every millisecond 

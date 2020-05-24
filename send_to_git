@@ -2,8 +2,6 @@
 
 cat ./info/readme.md ./info/to_do.md > README.md
 
-git add -u
-git reset -- ./data/output # we have no intention on sending up output files
-
+git add .
 git commit -m "$1"
 git push

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+
+x=10; # can change this for other available counts of games played
+
+# outer loop for number of players at the table
+for s in 2 3 4 5 6 7 8 9 10
+do
+    for t in "High Card" "One Pair" "Two Pair" "Three of a Kind" "Straight" "Flush" "Full House" "Four of a Kind" "Straight Flush"
+    do
+        echo "$t,\c" > ./hand_counts/$s-$x-count-$t
+        cat ./output/$x""_hands_players$s | grep "$t" | wc -l >> ./hand_counts/$s-$x-count-$t
+    done
+
+    # now we have created all counts -> time to combine
+    cat ./hand_counts/$s-$x* > ./hand_counts/$s-players/$x-hands
+    rm ./hand_counts/$s-$x*
+done
+

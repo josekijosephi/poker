@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# this script is used to create data which comes out of $num_test hands
+# with varying number of players at the table
+
+num_tests=10000;
+
+for t in 2 3 4 5 6 7 8 9 10
+do
+    echo "$t $num_tests 0" > ./input/input$t
+    cat ./input/input$t | ../code/poker > ./output/10_hands_players$t
+done
