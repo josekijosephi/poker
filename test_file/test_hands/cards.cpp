@@ -8,7 +8,10 @@
 #include <string>
 #include <vector>
 #include <iomanip>
-#include <ctime>
+
+#include <chrono> // we are going to try get milliseconds and pump fresh cards out faster
+//#include <ctime>
+
 #include <cstdlib>
 
 #include "cards.h"
@@ -52,7 +55,11 @@ Deck::Deck()
             all_cards[i][j] = 0;
 
     int count = 0;
-    std::srand(std::time(0));
+
+    std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::system_clock::now().time_since_epoch()
+            );
+    std::srand(ms.count());
 
     while (++count <= NUM_CARDS)
     {
@@ -111,10 +118,10 @@ void pretty_card_print(std::vector<Card> cards)
         std::cout << "\u2219\u2219\u2219\u2219\u2219  ";
     std::cout << std::endl;
 }
-void simple_card_print(std::vector<Card> cards, std::vector<Card> pocket)
+void simple_card_print(std::vector<Card> pocket, std::vector<Card> cards)
 {
-    for (auto it : cards)
-            it.print_card(0);
     for (auto it : pocket)
             it.print_card(0);
+    //for (auto it : cards)
+    //        it.print_card(0);
 }

@@ -91,6 +91,8 @@ int player_Hand_sorting(Player a, Player b)
 
 Player Game_Master::choose_winner(Ring* ring, std::vector<Player>* players)
 {
+
+
     std::vector<Card> base_cards(*ring->get_community_cards());
     
     // The first thing we need to do is calculate the value of each player's hand

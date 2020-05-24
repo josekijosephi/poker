@@ -35,7 +35,7 @@ class Ring
         Ring (std::vector<Player> p)
         {
             players = p;
-            big_blind = 10;
+            big_blind = 0;
         }
 
         void (Ring::*card_fn)(Deck*); // this the function pointer

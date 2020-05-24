@@ -18,7 +18,7 @@ int all_players_acted (Ring *ring);
 void Game_Master::play_round(Ring* ring, int max_rounds, int terminal_output)
 {
     std::string winning_hands[] = {"Straight Flush", "Four of a Kind", "Full House", 
-        "Flush", "Straight", "Three of a Kind", "Two Pair", "Pair", "High Card"};
+        "Flush", "Straight", "Three of a Kind", "Two Pair", "One Pair", "High Card"};
 
     // Array of function pointers for a while loop
     void (Ring::*deal_functions[])(Deck*) = { 
@@ -81,6 +81,7 @@ void Game_Master::play_round(Ring* ring, int max_rounds, int terminal_output)
             std::cout << "Winner," << winner.get_name() << ",Hand," << 
                 winning_hands[winner.get_player_hand().get_hand()] <<std::endl;
 
+
         int pos = find_player_position(ring, winner.get_name());
         ring->take_from_pot(ring->get_player(pos));
 
@@ -88,17 +89,20 @@ void Game_Master::play_round(Ring* ring, int max_rounds, int terminal_output)
         {
             pretty_card_print(winner.get_pocket_cards());
             pretty_card_print(*ring->get_community_cards());
+            std::cout << "\n\n";
         } else
+        {
             simple_card_print(winner.get_pocket_cards(), *ring->get_community_cards());
+            std::cout << "\n";
+        }
 
-        std::cout << "\n\n";
 
 
         ring->clear_all_cards();
         ring->reset_pot_size();
         ring->remove_broke_players();
         rounds_played++;
-        std::this_thread::sleep_for (std::chrono::seconds(1));
+        std::this_thread::sleep_for (std::chrono::milliseconds(1));
     }
 }
 

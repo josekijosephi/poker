@@ -108,10 +108,10 @@ int is_three_kind(int *num_vals)
 int Hand_order (Hand_Value a, Hand_Value b)
 {
     if (a.get_hand() == b.get_hand())
-        return (a.get_top_value() <= b.get_top_value());
+        return (a.get_top_value() < b.get_top_value());
     else
         // Since the best hand has value 0, lower is better
-        return (a.get_hand() <= b.get_hand());
+        return (a.get_hand() < b.get_hand());
 }
 
 Value greater_card(Card a, Card b)
