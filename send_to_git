@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cat ./issues/to_do.md >> README.md
+cat ./issues/readme.md ./issues/to_do.md > README.md
 
 git add .
 git commit -m "$1"
