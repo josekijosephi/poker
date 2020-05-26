@@ -2,11 +2,29 @@
 
 # this script is used to create data which comes out of $num_test hands
 # with varying number of players at the table
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m'
 
-num_tests=10000;
-
-for t in 2 3 4 5 6 7 8 9 10
+for num_tests in 1000 10000 100000 250000
 do
-    echo "$t $num_tests 0" > ./input/input$t
-    cat ./input/input$t | ../code/poker > ./output/10_hands_players$t
+    if [ $num_tests -eq 1000 ]
+    then 
+        num=1
+    elif [ $num_tests -eq 10000 ]
+    then
+        num=10
+    elif [ $num_tests -eq 100000 ]
+    then
+        num=100
+    else
+        num=250
+    fi
+
+    for players in 2 3 4 5 6 7 8 9 10
+    do
+        echo "$players $num_tests 0" > ./input/input$players
+        cat ./input/input$players | ../code/poker > ./output/$num""_hands_players$players
+        echo "======== $num_tests hands with $players players ${GREEN}done${NC} ========"
+    done
 done

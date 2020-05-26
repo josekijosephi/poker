@@ -13,7 +13,6 @@ enum Suit {
     Diamonds, // utf encoding: \u2662
     Spades, // utf encoding: \u2664
     Hearts // utf encoding: \u2661
-
 };
 enum Value {
     Two=0,
@@ -28,7 +27,8 @@ enum Value {
     Jack,
     Queen,
     King,
-    Ace
+    Ace,
+    Null
 };
 
 class Card

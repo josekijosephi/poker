@@ -1,9 +1,0 @@
-#!/bin/bash
-
-x=0;
-while [ $x -lt $1 ]
-do
-    ./ret;
-    x=$(( $x + 1 ));
-done;
-

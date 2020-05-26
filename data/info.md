@@ -30,3 +30,11 @@ The python responsible for turning the data from the csv into a histogram for th
 
 Python which calculates the winning percentages for the starting hand -> to be represented as a matrix with different colours to 
 represent different percentages.
+
+## time to run tests
+
+When running 9 x 100,000 and 9 x 250,000 hands, time taken:
+
+    real	105m17.950s
+    user	10m38.311s
+    sys	4m58.738s

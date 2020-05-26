@@ -10,6 +10,10 @@ Players limp into the pot and check until the showdown...
 
 Player decisions will be improved next release.
 
+On the way to good decisions, this plot was made:
+
+![250,000 winning Hands](./data/figs/250_hands_6_players.png)
+
 ## Usage
 
 **New usage --** you can also pump stdin into the program to affect number of rounds and number of players -- more on this later.

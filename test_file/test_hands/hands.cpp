@@ -6,12 +6,12 @@
 
 int value_order (Card c, Card d)
 {
-    return c.get_value() <= d.get_value(); 
+    return c.get_value() < d.get_value(); 
 }
 
 int suit_order (Card c, Card d)
 {
-    return c.get_suit() <= d.get_suit();
+    return c.get_suit() < d.get_suit();
 }
 
 int longest_increasing_sequence(int *vals_list)
@@ -104,6 +104,50 @@ int is_three_kind(int *num_vals)
 
     return 0;
 }
+int is_straight_flush(std::vector<Card> cards, int* num_suits)
+{
+    /* 
+     * We know that this hand is a straight and a flush 
+     *  => we only check the cards which are the right suit
+     */
+
+    Suit flush_suit;
+    for (int i = 0; i < NUM_SUITS; i++)
+        if (num_suits[i] >= 5)
+            flush_suit = (Suit)i;
+
+    // We now have the suit worked out, time to 
+    // sort based off values to find the straight
+    std::sort(cards.begin(), cards.end(), value_order);
+
+    int length = 0;
+    Value prev = Null;
+
+    for (auto it : cards)
+    {
+        if (it.get_suit() != flush_suit)
+            continue;
+        
+        if (prev == Null)
+        {
+            prev = it.get_value();
+            length = 1;
+        } else
+        {
+            if ( (int)it.get_value() - (int)prev == 1 )
+                length++;
+            else
+                length = 0;
+
+            prev = it.get_value();
+        }
+    
+        if (length == 5)
+            return 1;
+    }
+
+    return 0;
+}
 
 int Hand_order (Hand_Value a, Hand_Value b)
 {
@@ -116,7 +160,7 @@ int Hand_order (Hand_Value a, Hand_Value b)
 
 Value greater_card(Card a, Card b)
 {
-    if (a.get_value() >= b.get_value())
+    if (a.get_value() > b.get_value())
         return a.get_value();
     else
         return b.get_value();
@@ -137,7 +181,7 @@ Hand_Value find_hand(std::vector<Card> cards)
             greater_card(cards.at(cards.size()-1), cards.at(cards.size()-2))
             );
 
-    if (is_flush(suit_count) && is_straight(valu_count))
+    if (is_straight(valu_count) && is_flush(suit_count) && is_straight_flush(cards, suit_count))
         value_of_hand.set_hand(Straight_Flush);
     else if (max_of_one_card(valu_count) == 4)
         value_of_hand.set_hand(Four_Kind);

@@ -32,7 +32,7 @@ Hand_Value	hands.h	/^        Hand_Value() { hand = High_Card; top_value = Two; }
 Hand_Value	hands.h	/^        Hand_Value(Hand h, Value v) { hand = h; top_value = v; }$/;"	f	class:Hand_Value
 Hand_Value	hands.h	/^class Hand_Value$/;"	c
 Hand_order	hands.cpp	/^int Hand_order (Hand_Value a, Hand_Value b)$/;"	f
-Hearts	cards.h	/^    Hearts \/\/ utf encoding: \\u2661$/;"	e	enum:Suit
+Hearts	cards.h	/^    Hearts, \/\/ utf encoding: \\u2661$/;"	e	enum:Suit
 High_Card	hands.h	/^    High_Card$/;"	e	enum:Hand
 Jack	cards.h	/^    Jack,$/;"	e	enum:Value
 King	cards.h	/^    King,$/;"	e	enum:Value
@@ -42,6 +42,7 @@ NUM_GAMES	main.cpp	/^#define NUM_GAMES /;"	d	file:
 NUM_SUITS	cards.h	/^#define NUM_SUITS /;"	d
 NUM_VALUES	cards.h	/^#define NUM_VALUES /;"	d
 Nine	cards.h	/^    Nine,$/;"	e	enum:Value
+Null	cards.h	/^    Null$/;"	e	enum:Suit
 One_Pair	hands.h	/^    One_Pair,$/;"	e	enum:Hand
 Option	action.h	/^enum Option$/;"	g
 PLAYER_H	player.h	/^#define PLAYER_H$/;"	d
@@ -122,13 +123,13 @@ get_suit	cards.h	/^        Suit get_suit() { return suit; }$/;"	f	class:Card
 get_symbol	cards.h	/^        std::string get_symbol() { return symbol; }$/;"	f	class:Card
 get_top_value	hands.h	/^        Value get_top_value() { return top_value; }$/;"	f	class:Hand_Value
 get_value	cards.h	/^        Value get_value() { return value; }$/;"	f	class:Card
-greater_card	hands.cpp	/^Value greater_card(Card a, Card b)$/;"	f
 hand	hands.h	/^        Hand hand;$/;"	m	class:Hand_Value
 hand	player.h	/^        Hand_Value hand;$/;"	m	class:Player
 increase_round_count	game_master.h	/^        void increase_round_count(int num) { rounds_played = rounds_played + num; }$/;"	f	class:Game_Master
 is_flush	hands.cpp	/^int is_flush(int *num_suit)$/;"	f
 is_pair	hands.cpp	/^int is_pair(int *num_vals)$/;"	f
 is_straight	hands.cpp	/^int is_straight(int *num_vals)$/;"	f
+is_straight_flush	hands.cpp	/^int is_straight_flush(std::vector<Card> cards, int* num_suits)$/;"	f
 is_three_kind	hands.cpp	/^int is_three_kind(int *num_vals)$/;"	f
 is_two_pair	hands.cpp	/^int is_two_pair (int *num_vals)$/;"	f
 is_winner	ring.cpp	/^int Ring::is_winner()$/;"	f	class:Ring

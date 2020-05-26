@@ -1,19 +1,20 @@
 #!/bin/sh
 
 
-x=10; # can change this for other available counts of games played
-
-# outer loop for number of players at the table
-for s in 2 3 4 5 6 7 8 9 10
+# going to run this script for 10,000 hands and 100,000 hands together
+for num in 1 10 100 250
 do
-    for t in "High Card" "One Pair" "Two Pair" "Three of a Kind" "Straight" "Flush" "Full House" "Four of a Kind" "Straight Flush"
+    # outer loop for number of players at the table
+    for players in 2 3 4 5 6 7 8 9 10
     do
-        echo "$t,\c" > ./hand_counts/$s-$x-count-$t
-        cat ./output/$x""_hands_players$s | grep "$t" | wc -l >> ./hand_counts/$s-$x-count-$t
+        for hand in "High Card" "One Pair" "Two Pair" "Three of a Kind" "Straight" "Flush" "Full House" "Four of a Kind" "Straight Flush"
+        do
+            echo "$hand,\c" >> ./hand_counts/$players-$num-count
+            grep "$hand" ./output/$num""_hands_players$players | wc -l >> ./hand_counts/$players-$num-count
+        done
+
+        # now we have created all counts -> time to combine
+        cat ./hand_counts/$players-$num* | sed 's/, */,/g' > ./hand_counts/$players-players/$num-hands
+        rm ./hand_counts/$players-$num*
     done
-
-    # now we have created all counts -> time to combine
-    cat ./hand_counts/$s-$x* > ./hand_counts/$s-players/$x-hands
-    rm ./hand_counts/$s-$x*
 done
-
